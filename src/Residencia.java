@@ -1,8 +1,9 @@
 
-public class Residencia {
+public class Residencia implements Comparable<Residencia> {
 
 	int qtdMoradores;
 	int qtdconsumoTotal;
+	int consumoMedio;
 
 	public Residencia() {
 
@@ -11,6 +12,7 @@ public class Residencia {
 	public Residencia(int qtdMoradores, int qtdconsumoTotal) {
 		this.qtdMoradores = qtdMoradores;
 		this.qtdconsumoTotal = qtdconsumoTotal;
+		consumoMedio = this.qtdconsumoTotal / this.qtdMoradores;
 	}
 
 	public void setQtdMoradores(int qtdMoradores) {
@@ -43,7 +45,20 @@ public class Residencia {
 
 	@Override
 	public String toString() {
-
-		return "Quantidade de moradores: " + this.qtdMoradores + ", consumo total: " + this.qtdconsumoTotal;
+		return this.qtdMoradores + "-" + this.consumoMedio;
+		// return this.qtdMoradores + "-" + this.qtdconsumoTotal / qtdMoradores;
 	}
+
+	@Override
+	public int compareTo(Residencia o) {
+
+		if (this.qtdconsumoTotal < o.getQtdconsumoTotal()) {
+			return -1;
+		}
+		if (this.qtdconsumoTotal > o.getQtdconsumoTotal()) {
+			return 1;
+		}
+		return 0;
+	}
+
 }
