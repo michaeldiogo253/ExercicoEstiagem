@@ -74,17 +74,23 @@ public class Estiagem {
 //		System.out.println("A primeira cidade tem moradores: (3) " + listaCidades.get(0).size());
 
 		for (int i = 0; i < listaCidades.size(); i++) {
+			int consumoTotal = 0;
+			int moradoresTotal = 0;
 			System.out.println("Cidade# " + (i + 1) + ":");
 			for (int j = 0; j < listaCidades.get(i).size(); j++) {
-				int consumototal;
-				int moradorestotal;
+
+				consumoTotal = consumoTotal + listaCidades.get(i).get(j).qtdconsumoTotal;
+
+				moradoresTotal = moradoresTotal + listaCidades.get(i).get(j).qtdMoradores;
+
 				System.out.print(listaCidades.get(i).get(j).toString() + " ");
+
 				if (listaCidades.get(i).size() - j == 1) {
 
 					System.out.println();
 				}
 			}
-
+			System.out.println("consumo total " + consumoTotal + ", moradores Total " + moradoresTotal);
 		}
 
 		sc.close();
