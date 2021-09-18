@@ -8,8 +8,9 @@ public class Residencia {
 
 	}
 
-	public int getQtdMoradores() {
-		return qtdMoradores;
+	public Residencia(int qtdMoradores, int qtdconsumoTotal) {
+		this.qtdMoradores = qtdMoradores;
+		this.qtdconsumoTotal = qtdconsumoTotal;
 	}
 
 	public void setQtdMoradores(int qtdMoradores) {
@@ -38,5 +39,11 @@ public class Residencia {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public String toString() {
+
+		return "Quantidade de moradores: " + this.qtdMoradores + ", consumo total: " + this.qtdconsumoTotal;
 	}
 }
