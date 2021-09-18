@@ -90,7 +90,11 @@ public class Estiagem {
 					System.out.println();
 				}
 			}
-			System.out.println("consumo total " + consumoTotal + ", moradores Total " + moradoresTotal);
+			double mediaConsumoTotal = consumoTotal / moradoresTotal;
+			System.out.println("Consumo medio: " + mediaConsumoTotal + " m3.");
+			// System.out.println(String.format("Distância em km c/ duas casas decimais =
+			// %.2f", (metros/1000f)));
+
 		}
 
 		sc.close();
