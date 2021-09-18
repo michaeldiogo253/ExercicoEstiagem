@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Estiagem {
@@ -8,7 +9,7 @@ public class Estiagem {
 		Scanner sc = new Scanner(System.in);
 		int quantImoveis = -1;
 
-		ArrayList<Residencia> listaCidades = new ArrayList<>();
+		List<Cidade> cidadesList = new ArrayList<>();
 
 		while (quantImoveis != 0) {
 
@@ -32,7 +33,10 @@ public class Estiagem {
 			}
 
 			for (int i = quantImoveis; i > 0; i--) {
+				Cidade cit = new Cidade();
 				while (true) {
+
+					ArrayList<Residencia> listaResidencias = new ArrayList<>();
 
 					try {
 						System.out.println("Digite a quantidade de moradores da residencia:");
@@ -42,7 +46,8 @@ public class Estiagem {
 
 						if ((qtdMoradores >= 1 && qtdMoradores <= 10) && (qtdConsumo >= 1 && qtdConsumo <= 200)) {
 							Residencia res = new Residencia(qtdMoradores, qtdConsumo);
-							listaCidades.add(res);
+							listaResidencias.add(res);
+							cit.adicionaResidencia(res);
 							break;
 						} else {
 							if (qtdMoradores < 1 || qtdMoradores > 10) {
@@ -57,17 +62,21 @@ public class Estiagem {
 						System.out.println("VALORES INVALIDOS! Digite novamente...");
 					}
 
+					cidadesList.add(cit);
 				}
 
 			}
 
 		}
 
-		int cidades = 0;
-		for (Residencia residencia : listaCidades) {
-			cidades++;
-			System.out.println("Cidade " + cidades);
-			System.out.println(residencia.toString());
+		int qtdCidades = 1;
+		for (Cidade cidade : cidadesList) {
+			System.out.println("Cidade " + qtdCidades);
+			cidade.retornaTodasResidenciasDaCidade();
+//			for (int i = 0; i <= cidade.getListResidencias().size(); i++) {
+//				System.out.println(cidade.getListResidencias().indexOf(i));
+//			}
+			qtdCidades++;
 		}
 
 	}
