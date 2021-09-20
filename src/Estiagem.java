@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ public class Estiagem {
 		Scanner sc = new Scanner(System.in);
 		int quantImoveis = -1;
 
-		List<Cidade> cidadesList = new ArrayList<>();
+		List<ArrayList<Residencia>> listaCidades = new ArrayList<>();
 
 		while (quantImoveis != 0) {
 
@@ -32,11 +33,10 @@ public class Estiagem {
 				break;
 			}
 
+			ArrayList<Residencia> listaResidencias = new ArrayList<>();
 			for (int i = quantImoveis; i > 0; i--) {
-				Cidade cit = new Cidade();
-				while (true) {
 
-					ArrayList<Residencia> listaResidencias = new ArrayList<>();
+				while (true) {
 
 					try {
 						System.out.println("Digite a quantidade de moradores da residencia:");
@@ -47,7 +47,7 @@ public class Estiagem {
 						if ((qtdMoradores >= 1 && qtdMoradores <= 10) && (qtdConsumo >= 1 && qtdConsumo <= 200)) {
 							Residencia res = new Residencia(qtdMoradores, qtdConsumo);
 							listaResidencias.add(res);
-							cit.adicionaResidencia(res);
+
 							break;
 						} else {
 							if (qtdMoradores < 1 || qtdMoradores > 10) {
@@ -59,26 +59,45 @@ public class Estiagem {
 						}
 
 					} catch (Exception e) {
+						System.out.println("erro: " + e);
 						System.out.println("VALORES INVALIDOS! Digite novamente...");
 					}
 
-					cidadesList.add(cit);
 				}
 
 			}
+			Collections.sort(listaResidencias);
+			listaCidades.add(listaResidencias);
+		}
+
+//		System.out.println("tamanho da lista de cidades: " + listaCidades.size());
+//		System.out.println("A primeira cidade tem moradores: (3) " + listaCidades.get(0).size());
+
+		for (int i = 0; i < listaCidades.size(); i++) {
+			int consumoTotal = 0;
+			int moradoresTotal = 0;
+			System.out.println("Cidade# " + (i + 1) + ":");
+			for (int j = 0; j < listaCidades.get(i).size(); j++) {
+
+				consumoTotal = consumoTotal + listaCidades.get(i).get(j).qtdconsumoTotal;
+
+				moradoresTotal = moradoresTotal + listaCidades.get(i).get(j).qtdMoradores;
+
+				System.out.print(listaCidades.get(i).get(j).toString() + " ");
+
+				if (listaCidades.get(i).size() - j == 1) {
+
+					System.out.println();
+				}
+			}
+			double mediaConsumoTotal = consumoTotal / moradoresTotal;
+			System.out.println("Consumo medio: " + mediaConsumoTotal + " m3.");
+			// System.out.println(String.format("Distância em km c/ duas casas decimais =
+			// %.2f", (metros/1000f)));
 
 		}
 
-		int qtdCidades = 1;
-		for (Cidade cidade : cidadesList) {
-			System.out.println("Cidade " + qtdCidades);
-			cidade.retornaTodasResidenciasDaCidade();
-//			for (int i = 0; i <= cidade.getListResidencias().size(); i++) {
-//				System.out.println(cidade.getListResidencias().indexOf(i));
-//			}
-			qtdCidades++;
-		}
-
+		sc.close();
 	}
 
 }
