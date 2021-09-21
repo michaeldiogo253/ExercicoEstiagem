@@ -11,7 +11,6 @@ public class Estiagem {
 
 		Scanner sc = new Scanner(System.in);
 		int quantImoveis = -1;
-
 		List<ArrayList<Residencia>> listaCidades = new ArrayList<>();
 
 		while (quantImoveis != 0) {
@@ -61,7 +60,7 @@ public class Estiagem {
 						}
 
 					} catch (Exception e) {
-						System.out.println("erro: " + e);
+						System.out.println("Erro: " + e);
 						System.out.println("VALORES INVALIDOS! Digite novamente...");
 					}
 
@@ -71,9 +70,6 @@ public class Estiagem {
 			Collections.sort(listaResidencias);
 			listaCidades.add(listaResidencias);
 		}
-
-//		System.out.println("tamanho da lista de cidades: " + listaCidades.size());
-//		System.out.println("A primeira cidade tem moradores: (3) " + listaCidades.get(0).size());
 
 		for (int i = 0; i < listaCidades.size(); i++) {
 			int consumoTotal = 0;
@@ -94,7 +90,6 @@ public class Estiagem {
 			}
 			BigDecimal bigConsumoTotal = new BigDecimal(consumoTotal);
 			BigDecimal bigMoradoresTotal = new BigDecimal(moradoresTotal);
-			int controle = listaCidades.size();
 
 			if (!(listaCidades.size() - i == 1)) {
 				System.out.println(
