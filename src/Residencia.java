@@ -27,16 +27,28 @@ public class Residencia implements Comparable<Residencia> {
 		this.qtdconsumoTotal = qtdconsumoTotal;
 	}
 
-	public boolean validaConsumoTotal() {
-		if (this.getQtdconsumoTotal() <= 200 && this.getQtdconsumoTotal() >= 1) {
+	public int getConsumoMedio() {
+		return consumoMedio;
+	}
+
+	public void setConsumoMedio(int consumoMedio) {
+		this.consumoMedio = consumoMedio;
+	}
+
+	public int getQtdMoradores() {
+		return qtdMoradores;
+	}
+
+	public boolean validaMoradores() {
+		if (this.getQtdconsumoTotal() <= 10 && this.getQtdconsumoTotal() >= 1) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public boolean validaMoradores() {
-		if (this.getQtdconsumoTotal() <= 10 && this.getQtdconsumoTotal() >= 1) {
+	public boolean validaConsumoTotal() {
+		if (this.getQtdconsumoTotal() <= 200 && this.getQtdconsumoTotal() >= 1) {
 			return true;
 		} else {
 			return false;
@@ -52,10 +64,11 @@ public class Residencia implements Comparable<Residencia> {
 	@Override
 	public int compareTo(Residencia o) {
 
-		if (this.qtdconsumoTotal < o.getQtdconsumoTotal()) {
+		
+		if (this.consumoMedio < o.getConsumoMedio()) {
 			return -1;
 		}
-		if (this.qtdconsumoTotal > o.getQtdconsumoTotal()) {
+		if (this.consumoMedio > o.getConsumoMedio()) {
 			return 1;
 		}
 		return 0;

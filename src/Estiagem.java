@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -90,10 +92,18 @@ public class Estiagem {
 					System.out.println();
 				}
 			}
-			double mediaConsumoTotal = consumoTotal / moradoresTotal;
-			System.out.println("Consumo medio: " + mediaConsumoTotal + " m3.");
-			// System.out.println(String.format("Distância em km c/ duas casas decimais =
-			// %.2f", (metros/1000f)));
+			BigDecimal bigConsumoTotal = new BigDecimal(consumoTotal);
+			BigDecimal bigMoradoresTotal = new BigDecimal(moradoresTotal);
+			int controle = listaCidades.size();
+
+			if (!(listaCidades.size() - i == 1)) {
+				System.out.println(
+						"Consumo medio: " + bigConsumoTotal.divide(bigMoradoresTotal, 2, RoundingMode.UP) + " m3.");
+				System.out.println();
+			} else {
+				System.out.print(
+						"Consumo medio: " + bigConsumoTotal.divide(bigMoradoresTotal, 2, RoundingMode.UP) + " m3.");
+			}
 
 		}
 
